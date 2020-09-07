@@ -1,9 +1,9 @@
 class Account
-  attr_reader :balance, :transaction, :transaction_log
+  attr_reader :balance, :transactions
 
   def initialize
     @balance = 0
-    @transaction = []
+    @transactions = []
   end
 
   def formatted_amount(amount)
@@ -14,20 +14,28 @@ class Account
     formatted_amount(@balance)
   end
 
-  def display_transactions
+  def print_statement
     puts 'date || credit || debit || balance'
-    @transaction.reverse.each do |transaction|
+    @transactions.reverse.each do |transaction|
       puts transaction
     end
   end
 
   def deposit(amount, date)
     @balance += amount
-    @transaction.push("#{date}" + " || " + "#{formatted_amount(amount)}" + " || || " + "#{display_balance}")
+    make_deposit(amount, date)
+  end
+
+  def make_deposit(amount, date)
+    @transactions.push(date + ' || ' + formatted_amount(amount) + ' || || ' + display_balance)
   end
 
   def withdraw(amount, date)
     @balance -= amount
-    @transaction.push("#{date}" + " || || " + "#{formatted_amount(amount)}" + " || " + "#{display_balance}")
+    make_withdrawal(amount, date)
+  end
+
+  def make_withdrawal(amount, date)
+    @transactions.push(date + ' || || ' + formatted_amount(amount) + ' || ' + display_balance)
   end
 end
