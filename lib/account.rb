@@ -1,26 +1,30 @@
 class Account
-  attr_reader :balance, :transactions
+  attr_reader :balance, :transaction
 
   def initialize
     @balance = 0
-    @transactions = []
+    @transaction = []
+  end
+
+  def formatted_amount(amount)
+    format '%.2f', amount
   end
 
   def display_balance
-    format '%.2f', @balance
+    formatted_amount(@balance)
   end
 
   def display_transactions
-    @transactions.join
+    @transaction.join
   end
 
   def deposit(amount, date)
     @balance += amount
-    formatted_amount = format '%.2f', amount
-    @transactions.push(date, ' || ', formatted_amount, ' || || ', display_balance)
+    @transaction.push(date, ' || ', formatted_amount(amount), ' || || ', display_balance, "\n")
   end
 
-  def withdraw(amount)
+  def withdraw(amount, date)
     @balance -= amount
+    @transaction.push(date, ' || || ', formatted_amount(amount), ' || ', display_balance, "\n")
   end
 end
