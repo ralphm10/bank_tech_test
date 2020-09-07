@@ -7,7 +7,7 @@ class Account
   end
 
   def formatted_amount(amount)
-    format '%.2f', amount
+    format('%<amount>.2f', amount: amount)
   end
 
   def display_balance
@@ -27,7 +27,7 @@ class Account
   end
 
   def make_deposit(amount, date)
-    @transactions.push(date + ' || ' + formatted_amount(amount) + ' || || ' + display_balance)
+    @transactions.push("#{date} || #{formatted_amount(amount)} || || #{display_balance}")
   end
 
   def withdraw(amount, date)
@@ -36,6 +36,6 @@ class Account
   end
 
   def make_withdrawal(amount, date)
-    @transactions.push(date + ' || || ' + formatted_amount(amount) + ' || ' + display_balance)
+    @transactions.push("#{date} || || #{formatted_amount(amount)} || #{display_balance}")
   end
 end

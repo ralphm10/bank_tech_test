@@ -39,11 +39,4 @@ describe Account do
       expect(subject.print_statement).to eq(["15/01/2012 || || 500.00 || 500.00", "10/01/2012 || 1000.00 || || 1000.00"])
     end
   end
-  describe '.print_statement' do
-    it 'displays a number of transactions with a header' do
-      subject.deposit(1000, '10/01/2012')
-      subject.withdraw(500, '15/01/2012')
-      expect(subject.print_statement).to eq(["15/01/2012 || || 500.00 || 500.00", "10/01/2012 || 1000.00 || || 1000.00"])
-    end
-  end
 end

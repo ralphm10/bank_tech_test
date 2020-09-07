@@ -1,0 +1,13 @@
+AllCops:
+
+  NewCops: enable
+
+  Exclude:
+    - 'spec/spec_helper.rb'
+    - 'Gemfile'
+
+Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
