@@ -2,7 +2,7 @@ require_relative 'statement'
 require_relative 'transaction_log'
 
 class Account
-  attr_reader :balance, :transactions, :transaction_log
+  attr_reader :balance, :transaction_log
 
   def initialize(transaction_log = TransactionLog.new)
     @balance = 0

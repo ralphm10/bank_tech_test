@@ -26,7 +26,7 @@ date || credit || debit || balance
 
 ### To run tests and view coverage
 
-* Clone this respository then;
+* Clone this respository then:
 ```
 bundle install
 rspec
@@ -41,7 +41,8 @@ The code does defend against minor edge cases such as handling a negative withdr
 ### Progress
 
 * The test coverage is 100%
-* This project meets the acceptance criteria above, see below example interaction 
+* Code has been analysed with rubocop to adhere to ruby style guidelines and coverage calculated with SimpleCov
+* This project meets the acceptance criteria above, see below example interaction
 
 ```
 [3] pry(main)> test = Account.new
