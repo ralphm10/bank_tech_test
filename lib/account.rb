@@ -6,12 +6,12 @@ class Account
     @transactions = []
   end
 
-  def formatted_amount(amount)
+  def format_amount(amount)
     format('%<amount>.2f', amount: amount)
   end
 
   def display_balance
-    formatted_amount(@balance)
+    format_amount(@balance)
   end
 
   def print_statement
@@ -21,21 +21,27 @@ class Account
     end
   end
 
-  def deposit(amount, date)
-    @balance += amount
-    make_deposit(amount, date)
+  def check_amount(amount)
+    raise 'Incorrect input, try again' if amount <= 0
   end
 
-  def make_deposit(amount, date)
-    @transactions.push("#{date} || #{formatted_amount(amount)} || || #{display_balance}")
+  def deposit(amount, date)
+    check_amount(amount)
+    @balance += amount
+    record_deposit(amount, date)
+  end
+
+  def record_deposit(amount, date)
+    @transactions.push("#{date} || #{format_amount(amount)} || || #{display_balance}")
   end
 
   def withdraw(amount, date)
+    check_amount(amount)
     @balance -= amount
-    make_withdrawal(amount, date)
+    record_withdrawal(amount, date)
   end
 
-  def make_withdrawal(amount, date)
-    @transactions.push("#{date} || || #{formatted_amount(amount)} || #{display_balance}")
+  def record_withdrawal(amount, date)
+    @transactions.push("#{date} || || #{format_amount(amount)} || #{display_balance}")
   end
 end

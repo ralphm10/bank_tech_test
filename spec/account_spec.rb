@@ -15,6 +15,12 @@ describe Account do
       subject.deposit(1000.50, '10/01/2012')
       expect(subject.display_balance).to eq('1000.50')
     end
+    it 'raises an error for an negative amount' do
+      expect { subject.deposit(-200, '10/01/2012') }.to raise_error(RuntimeError)
+    end
+    it 'raises an error for an incorrect input' do
+      expect { subject.deposit('Football', '10/01/2012') }.to raise_error(ArgumentError)
+    end
   end
   describe '.withdraw' do
     it 'changes the balance by the amount withdrawn' do
@@ -27,6 +33,12 @@ describe Account do
       subject.withdraw(500.50, '11/01/2012')
       expect(subject.display_balance).to eq('499.50')
     end
+    it 'raises an error for an negative amount' do
+      expect { subject.withdraw(-200, '10/01/2012') }.to raise_error(RuntimeError)
+    end
+    it 'raises an error for an incorrect input' do
+      expect { subject.withdraw('Football', '10/01/2012') }.to raise_error(ArgumentError)
+    end
   end
   describe '.print_statement' do
     it 'displays transaction details and date for a deposit' do
@@ -36,7 +48,8 @@ describe Account do
     it 'displays transaction details and date for a deposit and withdrawal' do
       subject.deposit(1000, '10/01/2012')
       subject.withdraw(500, '15/01/2012')
-      expect(subject.print_statement).to eq(["15/01/2012 || || 500.00 || 500.00", "10/01/2012 || 1000.00 || || 1000.00"])
+      expect(subject.print_statement)
+        .to eq(["15/01/2012 || || 500.00 || 500.00", "10/01/2012 || 1000.00 || || 1000.00"])
     end
   end
 end
