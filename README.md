@@ -44,17 +44,17 @@ The code does defend against minor edge cases such as handling a negative withdr
 * This project meets the acceptance criteria above, see below example interaction 
 
 ```
-[3] pry(main)> test = Account.new
+[3] pry(main)> my_account = Account.new
 => #<Account:0x00007fd2691e1d40 @balance=0, @transaction_log=#<TransactionLog:0x00007fd2691e1cf0 @transactions=[]>>
-[4] pry(main)> statement = Statement.new
+[4] pry(main)> january_statement = Statement.new
 => #<Statement:0x00007fd2651952a0>
-[5] pry(main)> test.deposit(1000, '10/01/2012')
+[5] pry(main)> my_account.deposit(1000, '10/01/2012')
 => ["10/01/2012 || 1000.00 || || 1000"]
-[6] pry(main)> test.deposit(2000, '13/01/2012')
+[6] pry(main)> my_account.deposit(2000, '13/01/2012')
 => ["10/01/2012 || 1000.00 || || 1000", "13/01/2012 || 2000.00 || || 3000"]
-[7] pry(main)> test.withdraw(500, '14/01/2012')
+[7] pry(main)> my_account.withdraw(500, '14/01/2012')
 => ["10/01/2012 || 1000.00 || || 1000", "13/01/2012 || 2000.00 || || 3000", "14/01/2012 || || 500.00 || 2500"]
-[8] pry(main)> statement.print_statement(test.transaction_log)
+[8] pry(main)> january_statement.print_statement(my_account.transaction_log)
 date || credit || debit || balance
 14/01/2012 || || 500.00 || 2500
 13/01/2012 || 2000.00 || || 3000
