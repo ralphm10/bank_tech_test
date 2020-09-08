@@ -3,10 +3,9 @@ require_relative 'statement'
 class Account
   attr_reader :balance, :transactions
 
-  def initialize(statement = Statement.new)
+  def initialize
     @balance = 0
     @transactions = []
-    @statement = statement
   end
 
   def format_amount(amount)

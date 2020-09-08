@@ -11,7 +11,7 @@ describe Account do
       subject.deposit(1000, '10/01/2012')
       expect(subject.display_balance).to eq('1000.00')
     end
-    it 'changes can handle decimal deposits' do
+    it 'can handle decimal deposits' do
       subject.deposit(1000.50, '10/01/2012')
       expect(subject.display_balance).to eq('1000.50')
     end
@@ -28,7 +28,7 @@ describe Account do
       subject.withdraw(500, '11/01/2012')
       expect(subject.display_balance).to eq('500.00')
     end
-    it 'changes can handle decimal deposits' do
+    it 'can handle decimal deposits' do
       subject.deposit(1000, '10/01/2012')
       subject.withdraw(500.50, '11/01/2012')
       expect(subject.display_balance).to eq('499.50')
