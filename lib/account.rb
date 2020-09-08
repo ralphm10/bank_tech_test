@@ -24,12 +24,12 @@ class Account
   def deposit(amount, date)
     check_amount(amount)
     @balance += amount
-    @transaction_log.record_deposit(format_amount(amount), date, @balance)
+    @transaction_log.record_deposit(format_amount(amount), date, display_balance)
   end
 
   def withdraw(amount, date)
     check_amount(amount)
     @balance -= amount
-    @transaction_log.record_withdrawal(format_amount(amount), date, @balance)
+    @transaction_log.record_withdrawal(format_amount(amount), date, display_balance)
   end
 end
