@@ -3,9 +3,9 @@ require_relative 'account'
 class Statement
   HEADER = 'date || credit || debit || balance'.freeze
 
-  def print_statement(account)
+  def print_statement(transaction_log)
     puts HEADER
-    account.transactions.reverse.each do |transaction|
+    transaction_log.transactions.reverse.each do |transaction|
       puts transaction
     end
   end

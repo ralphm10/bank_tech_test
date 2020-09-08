@@ -32,25 +32,32 @@ bundle install
 rspec
 ```
 
-### Approach to the problem and progress
+### Approach to the problem
 
-* This project meets the acceptance criteria above;
+First I sketched out a class diagram which defined the classes and their methods. I felt that the 'core' methods of a bank account (withdraw, deposit and showing a balance) should live on a separate class, and anything to do with printing statements should be in another. I originally recorded transactions on the account class but it later became clear that this too should be a class of its own, which I believe helps adhere to the single responsibility process.
 
-```
-2.7.1 :001 > require './lib/account.rb'
- => true
-2.7.1 :002 > ralphs_account = Account.new
-2.7.1 :003 > ralphs_account.deposit(1000, '10/01/2012')
- => ["10/01/2012 || 1000.00 || || 1000.00"]
-2.7.1 :004 > ralphs_account.deposit(2000, '13/01/2012')
- => ["10/01/2012 || 1000.00 || || 1000.00", "13/01/2012 || 2000.00 || || 3000.00"]
-2.7.1 :005 > ralphs_account.withdraw(500, '14/01/2012')
- => ["10/01/2012 || 1000.00 || || 1000.00", "13/01/2012 || 2000.00 || || 3000.00", "14/01/2012 || || 500.00 || 2500.00"]
-2.7.1 :006 > ralphs_account.print_statement
-date || credit || debit || balance
-14/01/2012 || || 500.00 || 2500.00
-13/01/2012 || 2000.00 || || 3000.00
-10/01/2012 || 1000.00 || || 1000.00
-```
+The code does defend against minor edge cases such as handling a negative withdrawal or deposit, however other edge cases (such as how to deal with going overdrawn) have not been addresses as they were not part of the requirements. As well as using the Rspec library, the code has been thoroughly feature tested in a IRB/Pry throughout.  
+
+### Progress
 
 * The test coverage is 100%
+* This project meets the acceptance criteria above, see below example interaction 
+
+```
+[3] pry(main)> test = Account.new
+=> #<Account:0x00007fd2691e1d40 @balance=0, @transaction_log=#<TransactionLog:0x00007fd2691e1cf0 @transactions=[]>>
+[4] pry(main)> statement = Statement.new
+=> #<Statement:0x00007fd2651952a0>
+[5] pry(main)> test.deposit(1000, '10/01/2012')
+=> ["10/01/2012 || 1000.00 || || 1000"]
+[6] pry(main)> test.deposit(2000, '13/01/2012')
+=> ["10/01/2012 || 1000.00 || || 1000", "13/01/2012 || 2000.00 || || 3000"]
+[7] pry(main)> test.withdraw(500, '14/01/2012')
+=> ["10/01/2012 || 1000.00 || || 1000", "13/01/2012 || 2000.00 || || 3000", "14/01/2012 || || 500.00 || 2500"]
+[8] pry(main)> statement.print_statement(test.transaction_log)
+date || credit || debit || balance
+14/01/2012 || || 500.00 || 2500
+13/01/2012 || 2000.00 || || 3000
+10/01/2012 || 1000.00 || || 1000
+=> ["14/01/2012 || || 500.00 || 2500", "13/01/2012 || 2000.00 || || 3000", "10/01/2012 || 1000.00 || || 1000"]
+```
