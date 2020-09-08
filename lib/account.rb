@@ -1,9 +1,12 @@
+require_relative 'statement'
+
 class Account
   attr_reader :balance, :transactions
 
-  def initialize
+  def initialize(statement = Statement.new)
     @balance = 0
     @transactions = []
+    @statement = statement
   end
 
   def format_amount(amount)
@@ -12,13 +15,6 @@ class Account
 
   def display_balance
     format_amount(@balance)
-  end
-
-  def print_statement
-    puts 'date || credit || debit || balance'
-    @transactions.reverse.each do |transaction|
-      puts transaction
-    end
   end
 
   def check_amount(amount)

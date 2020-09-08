@@ -40,16 +40,4 @@ describe Account do
       expect { subject.withdraw('Football', '10/01/2012') }.to raise_error(ArgumentError)
     end
   end
-  describe '.print_statement' do
-    it 'displays transaction details and date for a deposit' do
-      subject.deposit(1000, '10/01/2012')
-      expect(subject.print_statement).to eq(['10/01/2012 || 1000.00 || || 1000.00'])
-    end
-    it 'displays transaction details and date for a deposit and withdrawal' do
-      subject.deposit(1000, '10/01/2012')
-      subject.withdraw(500, '15/01/2012')
-      expect(subject.print_statement)
-        .to eq(["15/01/2012 || || 500.00 || 500.00", "10/01/2012 || 1000.00 || || 1000.00"])
-    end
-  end
 end
