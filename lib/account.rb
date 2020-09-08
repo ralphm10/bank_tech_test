@@ -1,11 +1,12 @@
 require_relative 'statement'
+require_relative 'transaction_log'
 
 class Account
-  attr_reader :balance, :transactions
+  attr_reader :balance, :transactions, :transaction_log
 
-  def initialize
+  def initialize(transaction_log = TransactionLog.new)
     @balance = 0
-    @transactions = []
+    @transaction_log = transaction_log
   end
 
   def format_amount(amount)
@@ -23,20 +24,12 @@ class Account
   def deposit(amount, date)
     check_amount(amount)
     @balance += amount
-    record_deposit(amount, date)
-  end
-
-  def record_deposit(amount, date)
-    @transactions.push("#{date} || #{format_amount(amount)} || || #{display_balance}")
+    @transaction_log.record_deposit(format_amount(amount), date, @balance)
   end
 
   def withdraw(amount, date)
     check_amount(amount)
     @balance -= amount
-    record_withdrawal(amount, date)
-  end
-
-  def record_withdrawal(amount, date)
-    @transactions.push("#{date} || || #{format_amount(amount)} || #{display_balance}")
+    @transaction_log.record_withdrawal(format_amount(amount), date, @balance)
   end
 end
