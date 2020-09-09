@@ -13,10 +13,6 @@ class Account
     format('%<amount>.2f', amount: amount)
   end
 
-  def display_balance
-    format_amount(@balance)
-  end
-
   def check_amount(amount)
     raise 'Incorrect input, try again' if amount <= 0
   end
@@ -24,12 +20,12 @@ class Account
   def deposit(amount, date)
     check_amount(amount)
     @balance += amount
-    @transaction_log.record_deposit(format_amount(amount), date, display_balance)
+    @transaction_log.record_deposit(format_amount(amount), date, format_amount(@balance))
   end
 
   def withdraw(amount, date)
     check_amount(amount)
     @balance -= amount
-    @transaction_log.record_withdrawal(format_amount(amount), date, display_balance)
+    @transaction_log.record_withdrawal(format_amount(amount), date, format_amount(@balance))
   end
 end
