@@ -1,12 +1,11 @@
 require_relative 'statement'
-require_relative 'transaction_log'
 
 class Account
-  attr_reader :balance, :transaction_log
+  attr_reader :balance, :statement
 
-  def initialize(transaction_log = TransactionLog.new)
+  def initialize(statement = Statement.new)
     @balance = 0
-    @transaction_log = transaction_log
+    @statement = statement
   end
 
   def format_amount(amount)
@@ -17,17 +16,15 @@ class Account
     raise 'Incorrect input, try again' if amount <= 0
   end
 
-
-
   def deposit(amount)
     check_amount(amount)
     @balance += amount
-    @transaction_log.record_deposit(format_amount(amount), format_amount(@balance))
+    @statement.record_deposit(format_amount(amount), format_amount(@balance))
   end
 
   def withdraw(amount)
     check_amount(amount)
     @balance -= amount
-    @transaction_log.record_withdrawal(format_amount(amount), format_amount(@balance))
+    @statement.record_withdrawal(format_amount(amount), format_amount(@balance))
   end
 end

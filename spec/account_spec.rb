@@ -19,7 +19,7 @@ describe Account do
       expect { subject.deposit(-200) }.to raise_error(RuntimeError)
     end
     it 'raises an error for an incorrect input' do
-      expect { subject.deposit('Football', '10/01/2012') }.to raise_error(ArgumentError)
+      expect { subject.deposit('Football') }.to raise_error(ArgumentError)
     end
   end
   describe '.withdraw' do
@@ -28,7 +28,7 @@ describe Account do
       subject.withdraw(500)
       expect(subject.format_amount(subject.balance)).to eq('500.00')
     end
-    it 'can handle decimal deposits' do
+    it 'can handle decimal withdrawals' do
       subject.deposit(1000)
       subject.withdraw(500.50)
       expect(subject.format_amount(subject.balance)).to eq('499.50')
