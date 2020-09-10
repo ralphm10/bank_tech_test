@@ -5,11 +5,15 @@ class TransactionLog
     @transactions = []
   end
 
-  def record_deposit(amount, date, balance)
-    @transactions.push("#{date} || #{amount} || || #{balance}")
+  def format_date
+    Time.now.strftime('%d/%m/%Y')
   end
 
-  def record_withdrawal(amount, date, balance)
-    @transactions.push("#{date} || || #{amount} || #{balance}")
+  def record_deposit(amount, balance)
+    @transactions.push("#{format_date} || #{amount} || || #{balance}")
+  end
+
+  def record_withdrawal(amount, balance)
+    @transactions.push("#{format_date} || || #{amount} || #{balance}")
   end
 end

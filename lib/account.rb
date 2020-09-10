@@ -17,19 +17,17 @@ class Account
     raise 'Incorrect input, try again' if amount <= 0
   end
 
-  def format_date
-    Time.now.strftime('%d/%m/%Y')
-  end
+
 
   def deposit(amount)
     check_amount(amount)
     @balance += amount
-    @transaction_log.record_deposit(format_amount(amount), format_date, format_amount(@balance))
+    @transaction_log.record_deposit(format_amount(amount), format_amount(@balance))
   end
 
   def withdraw(amount)
     check_amount(amount)
     @balance -= amount
-    @transaction_log.record_withdrawal(format_amount(amount), format_date, format_amount(@balance))
+    @transaction_log.record_withdrawal(format_amount(amount), format_amount(@balance))
   end
 end
