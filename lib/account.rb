@@ -8,10 +8,6 @@ class Account
     @statement = statement
   end
 
-  def format_amount(amount)
-    format('%<amount>.2f', amount: amount)
-  end
-
   def check_amount(amount)
     raise 'Incorrect input, try again' if amount <= 0
   end
@@ -19,12 +15,12 @@ class Account
   def deposit(amount)
     check_amount(amount)
     @balance += amount
-    @statement.record_deposit(format_amount(amount), format_amount(@balance))
+    @statement.record_deposit(amount)
   end
 
   def withdraw(amount)
     check_amount(amount)
     @balance -= amount
-    @statement.record_withdrawal(format_amount(amount), format_amount(@balance))
+    @statement.record_withdrawal(amount)
   end
 end
