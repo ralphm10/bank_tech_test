@@ -1,4 +1,5 @@
-# Bank Tech Test
+# Bank Tech Test 
+[![Build Status](https://travis-ci.com/ralphm10/bank_tech_test.svg?branch=master)](https://travis-ci.com/ralphm10/bank_tech_test)
 ```
  /$$$$$$$$ /$$                       /$$$$$$$                      /$$      
 |__  $$__/| $$                      | $$__  $$                    | $$      
@@ -21,7 +22,6 @@
  \______/ |__/            |__/  |__/ \_______/|__/| $$____/ |__/  |__/      
                                                   | $$                                                                                                     
 ```
-[![Build Status](https://travis-ci.com/ralphm10/bank_tech_test.svg?branch=master)](https://travis-ci.com/ralphm10/bank_tech_test)
 ## Specification
 
 ### Requirements
